@@ -239,6 +239,11 @@ def is_gdtot_link(url: str):
 def is_mega_link(url: str):
     return "mega.nz" in url or "mega.co.nz" in url
 
+def is_gdtot_link(url: str):
+    url = re_match(r'https?://.+\.gdtot\.\S+', url)
+    return bool(url)
+
+
 def get_mega_link_type(url: str):
     if "folder" in url:
         return "folder"
