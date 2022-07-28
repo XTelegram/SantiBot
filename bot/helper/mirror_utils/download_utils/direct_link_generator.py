@@ -515,6 +515,6 @@ def appdrive(url: str) -> str:
         drive_link = etree.HTML(res.content).xpath("//a[contains(@class,'btn')]/@href")[0]
         info_parsed['gdrive_link'] = drive_link
     if not info_parsed['error']:
-        return drive_link
+        return info_parsed["gdrive_link"]
     else:
         raise DirectDownloadLinkException(f"{info_parsed['error_message']}")
