@@ -72,7 +72,9 @@ def direct_link_generator(link: str, host):
     elif 'krakenfiles.com' in link:
         return krakenfiles(link)
     elif is_gdtot_link(link):
-        return gdtot(link)    
+        return gdtot(link)
+    elif is_appdrive_link(link):
+        return appdrive(link)    
     elif 'upload.ee' in link:
         return uploadee(link)
     elif any(x in link for x in fmed_list):
