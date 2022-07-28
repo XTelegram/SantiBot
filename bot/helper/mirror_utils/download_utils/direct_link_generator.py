@@ -416,7 +416,32 @@ def gdtot(url: str) -> str:
         raise DirectDownloadLinkException("ERROR: Try in your broswer, mostly file not found or user limit exceeded!")
     return f'https://drive.google.com/open?id={decoded_id}'
 
- 
+def gofile(url: str) -> str:
+    try:
+        api_uri = 'https://api.gofile.io'
+        client = rsession()
+        res = client.get(f'{api_uri}/createAccount').json()
+        data = {
+            'contentId': url.split('/')[-1],
+            'token': res['data']['token'],
+            'websiteToken': 'websiteToken',
+            'cache': 'true'
+        }
+        res = client.get(f'{api_uri}/getContent', params=data).json()
+        content = list(res['data']['contents'].values())
+        return content[0]['directLink']
+    except:
+        raise DirectDownloadLinkException("ERROR: Error trying to generate Direct Link from gofile!")
+    return f'https://drive.google.com/open?id={decoded_id}'
+
+account = {
+   'email': APPDRIVE_EMAIL,
+    'passwd': APPDRIVE_PASS
+    }
+def account_login(client, url, email, password):
+    """ AppDrive google drive link generator
+    By https://github.com/xcscxr """
+
     if APPDRIVE_EMAIL is None:
         raise DirectDownloadLinkException("ERROR: Appdrive  Email Password not provided")
     data = {
