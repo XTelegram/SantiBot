@@ -23,6 +23,7 @@ from time import sleep
 from lxml import etree
 
 from bot import LOGGER, UPTOBOX_TOKEN, CRYPT, APPDRIVE_EMAIL, APPDRIVE_PASS
+from bot.helper.ext_utils.bot_utils import is_gdtot_link, is_appdrive_link
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.ext_utils.exceptions import DirectDownloadLinkException
 
