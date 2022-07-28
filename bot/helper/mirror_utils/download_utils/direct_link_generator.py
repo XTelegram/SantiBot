@@ -79,6 +79,8 @@ def direct_link_generator(link: str, host):
         return uploadee(link)
     elif any(x in link for x in fmed_list):
         return fembed(link)
+    elif 'gofile.io' in link:
+        return gofile(link)
     elif any(x in link for x in ['sbembed.com', 'watchsb.com', 'streamsb.net', 'sbplay.org']):
         return sbembed(link)
     else:
